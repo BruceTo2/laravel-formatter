@@ -28,4 +28,6 @@ class JsonParserTest extends TestCase {
 		$parser = new JsonParser($expected);
 		$this->assertEquals($expected, $parser->toJson());
 	}
+
+	//TODO: write new tests for xml namespace and other custom csv responses
 }

@@ -71,11 +71,11 @@ class Formatter {
 		return $this->parser->toYaml();
 	}
 
-	public function toXml($baseNode = 'xml') {
-		return $this->parser->toXml($baseNode);
+	public function toXml($baseNode = 'xml', $namespace = 'item') {
+		return $this->parser->toXml($baseNode, $namespace);
 	}
 
 	public function toCsv() {
-		return $this->parser->toCsv();
+		return $this->parser->toCsv($newline = "\n", $delimiter = ",", $enclosure = '"', $escape = "\\");
 	}
 }

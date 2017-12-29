@@ -50,9 +50,10 @@ abstract class Parser {
 	 * @param   mixed        $data
 	 * @param   null         $structure
 	 * @param   null|string  $basenode
+     * @param   null|string  $namespace
 	 * @return  string
 	 */
-	private function xmlify($data, $structure = null, $basenode = 'xml') {
+	private function xmlify($data, $structure = null, $basenode = 'xml', $namespace = 'item') {
 		// turn off compatibility mode as simple xml throws a wobbly if you don't.
 		if (ini_get('zend.ze1_compatibility_mode') == 1) {
 			ini_set('zend.ze1_compatibility_mode', 0);
@@ -77,7 +78,7 @@ abstract class Parser {
 			// no numeric keys in our xml please!
 			if (is_numeric($key)) {
 				// make string key...
-				$key = (Str::singular($basenode) != $basenode) ? Str::singular($basenode) : 'item';
+				$key = (Str::singular($basenode) != $basenode) ? Str::singular($basenode) : $namespace;
 			}
 
 			// replace anything not alpha numeric
@@ -107,11 +108,12 @@ abstract class Parser {
 	 * Return an xml representation of the data stored in the parser
 	 *
 	 * @param string $baseNode
+     * @param string $namespace
 	 *
 	 * @return string An xml string representing the encapsulated data
 	 */
-	public function toXml($baseNode = 'xml') {
-		return $this->xmlify($this->toArray(), null, $baseNode);
+	public function toXml($baseNode = 'xml', $namespace = 'item') {
+		return $this->xmlify($this->toArray(), null, $baseNode, $namespace);
 	}
 
 	private function csvify($data) {
