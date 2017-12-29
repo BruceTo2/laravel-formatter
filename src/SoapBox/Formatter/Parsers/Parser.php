@@ -135,7 +135,7 @@ abstract class Parser {
 	 *
 	 * @return string An csv string representing the encapsulated data
 	 */
-	public function toCsv($newline = "\n", $delimiter = ",", $enclosure = '"', $escape = "\\") {
+	public function toCsv($newline = '\n', $delimiter = ',', $enclosure = '"', $escape = '\\') {
 		$data = $this->toArray();
 
 		if (ArrayHelpers::isAssociative($data) || !is_array($data[0])) {
